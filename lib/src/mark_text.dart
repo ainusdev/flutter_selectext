@@ -78,7 +78,7 @@ class MarkText extends StatelessWidget {
       textSpan = TextSpan(style: style, text: text);
     }
 
-    return SelectableText.rich(
+    return CustomSelectableText.rich(
       textSpan,
       style: style,
       textAlign: textAlign,

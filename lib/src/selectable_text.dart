@@ -10,8 +10,8 @@ import 'package:flutter_selectext/src/selectable_text_render_editable.dart';
 import 'package:flutter_selectext/src/selectable_text_selection_controls.dart';
 import 'package:flutter_selectext/src/text_selection_controls/material_copy_text_selection_controls.dart';
 
-class SelectableText extends StatelessWidget {
-  SelectableText(this.text,
+class CustomSelectableText extends StatelessWidget {
+  CustomSelectableText(this.text,
       {Key key,
       this.style,
       this.textAlign = TextAlign.start,
@@ -28,7 +28,7 @@ class SelectableText extends StatelessWidget {
         textSpan = null,
         super(key: key);
 
-  SelectableText.rich(this.textSpan,
+  CustomSelectableText.rich(this.textSpan,
       {Key key,
       this.style,
       this.textAlign = TextAlign.start,
@@ -87,7 +87,7 @@ class SelectableText extends StatelessWidget {
   }
 
   void _handleSingleLongTapStart(
-      BuildContext context, GestureLongPressDragStartDetails details) {
+      BuildContext context, LongPressStartDetails details) {
     // the EditableText widget will force the keyboard to come up if our focus node
     // is already focused. It does this by using a TextInputConnection
     // In order to tool it not to do that, we override our focus while selecting text
@@ -112,7 +112,7 @@ class SelectableText extends StatelessWidget {
   }
 
   void _handleSingleLongTapMoveUpdate(
-      GestureLongPressDragUpdateDetails details) {
+      LongPressMoveUpdateDetails details) {
     // the EditableText widget will force the keyboard to come up if our focus node
     // is already focused. It does this by using a TextInputConnection
     // In order to tool it not to do that, we override our focus while selecting text
@@ -128,7 +128,7 @@ class SelectableText extends StatelessWidget {
     _effectiveFocusNode.overrideFocus = null;
   }
 
-  void _handleSingleLongTapEnd(GestureLongPressDragUpDetails details) {
+  void _handleSingleLongTapEnd(LongPressEndDetails details) {
     _editableTextKey.currentState.showToolbar();
   }
 
@@ -243,8 +243,8 @@ class SelectableText extends StatelessWidget {
         onSingleLongTapStart: (details) {
           _handleSingleLongTapStart(context, details);
         },
-        onSingleLongTapDragUpdate: _handleSingleLongTapMoveUpdate,
-        onSingleLongTapUp: _handleSingleLongTapEnd,
+        onSingleLongTapMoveUpdate: _handleSingleLongTapMoveUpdate,
+        onSingleLongTapEnd: _handleSingleLongTapEnd,
         onDoubleTapDown: _handleDoubleTapDown,
         behavior: HitTestBehavior.translucent,
         child: child,

@@ -798,7 +798,7 @@ class SelectableTextEditableTextState extends State<SelectableTextEditableText>
       _openInputConnection();
     } else {
       final List<FocusScopeNode> ancestorScopes =
-          FocusScope.ancestorsOf(context);
+          FocusScope.of(context).ancestors;
       for (int i = ancestorScopes.length - 1; i >= 1; i -= 1)
         ancestorScopes[i].setFirstFocus(ancestorScopes[i - 1]);
       FocusScope.of(context).requestFocus(widget.focusNode);
@@ -1109,7 +1109,7 @@ class SelectableTextEditableTextState extends State<SelectableTextEditableText>
 
   @override
   Widget build(BuildContext context) {
-    FocusScope.of(context).reparentIfNeeded(widget.focusNode);
+    // FocusScope.of(context).reparentIfNeeded(widget.focusNode);
     super.build(context); // See AutomaticKeepAliveClientMixin.
 
     final SelectableTextSelectionControls controls = widget.selectionControls;
@@ -1181,4 +1181,29 @@ class SelectableTextEditableTextState extends State<SelectableTextEditableText>
     }
     return TextSpan(style: widget.style, text: text);
   }
+
+  @override
+  void connectionClosed() {
+    // TODO: implement connectionClosed
+  }
+
+  @override
+  // TODO: implement copyEnabled
+  bool get copyEnabled => throw UnimplementedError();
+
+  @override
+  // TODO: implement currentTextEditingValue
+  TextEditingValue get currentTextEditingValue => throw UnimplementedError();
+
+  @override
+  // TODO: implement cutEnabled
+  bool get cutEnabled => throw UnimplementedError();
+
+  @override
+  // TODO: implement pasteEnabled
+  bool get pasteEnabled => throw UnimplementedError();
+
+  @override
+  // TODO: implement selectAllEnabled
+  bool get selectAllEnabled => throw UnimplementedError();
 }
